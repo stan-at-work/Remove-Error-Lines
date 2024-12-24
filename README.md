@@ -1,14 +1,3 @@
-# Remove error lines
+# Deprecated
 
--   Remove error lines from the open file
-
----
-
-## How to use
-
--   `Ctrl + Shift + P`
-    -   Type: `Remove Error Imports`
-
-Or
-
--   Right Click on the code
+- This extension has been **deprecated** and moved to: **https://marketplace.visualstudio.com/items?itemName=Stan.remove-dart-error-warning**
