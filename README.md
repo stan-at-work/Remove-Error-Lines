@@ -1,12 +1,12 @@
 # Remove Dart Error/Warning Imports
 
-The **Remove Dart Error/Warning Imports** extension for Visual Studio Code streamlines your Dart development workflow by automatically removing `import`, `export`, `part`, and `part of` statements that cause errors or warnings in your code.
+The **Remove Dart Error/Warning Imports** extension for Visual Studio Code streamlines your Dart development workflow by automatically removing statements that cause errors or warnings in your code.
 
 ---
 
 ## Features
 
-- **Automated Cleanup**: Scans your Dart files and removes lines with `import`, `export`, `part`, and `part of` statements that have associated errors or warnings, helping to maintain clean and error-free code.
+- **Automated Cleanup**: Scans your Dart files and removes lines with statements that have associated errors or warnings, helping to maintain clean and error-free code.
 
 - **User-Friendly Commands**: Easily accessible through the command palette or context menu for quick integration into your development process.
 
@@ -66,7 +66,7 @@ These regular expressions are used to identify lines that should be removed base
 
 The extension provides the following commands for flexibility:
 
-- **Remove Dart Error/Warning**: Removes all `import`, `export`, `part`, and `part of` statements with errors or warnings.
+- **Remove Dart Error/Warning**: Removes all statements with errors or warnings.
 
 - **Remove Dart Errors Only**: Removes only the statements with errors.
 
