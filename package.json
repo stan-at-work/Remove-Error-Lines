@@ -1,6 +1,6 @@
 {
     "name": "remove-dart-error-imports",
-    "description": "Remove dart error imports from the selected file",
+    "description": "(DEPRECATED) use: remove-dart-error-warning",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/stan-at-work/Remove-Dart-Error-Imports.git"
@@ -12,8 +12,8 @@
     },
     "homepage": "https://github.com/stan-at-work/Remove-Dart-Error-Imports#readme",
     "publisher": "Stan",
-    "displayName": "Remove Dart Error Imports",
-    "version": "2.0.0",
+    "displayName": "Remove Dart Error Imports (DEPRECATED) use: remove-dart-error-warning",
+    "version": "9.9.9",
     "engines": {
         "vscode": "^1.60.0"
     },
@@ -29,7 +29,7 @@
         "commands": [
             {
                 "command": "extension.removeDartImportsWithErrors",
-                "title": "Remove Error Imports"
+                "title": "Remove Error Imports (DEPRECATED) use: remove-dart-error-warning"
             }
         ],
         "menus": {
