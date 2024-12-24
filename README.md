@@ -1,6 +1,6 @@
-# Remove Dart Error/Warning Imports
+# Remove Dart Error/Warning
 
-The **Remove Dart Error/Warning Imports** extension for Visual Studio Code streamlines your Dart development workflow by automatically removing statements that cause errors or warnings in your code.
+The **Remove Dart Error/Warning** extension for Visual Studio Code streamlines your Dart development workflow by automatically removing statements that cause errors or warnings in your code.
 
 ---
 
