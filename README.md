@@ -14,7 +14,7 @@ The **Remove Dart Error/Warning** extension for Visual Studio Code streamlines y
 
 ## How to Use
 
-![Gif how to use the extension](https://github.com/stan-at-work/remove-dart-error-warning/blob/01e2acf6aacfb69660c024ec84b53e43a114ea6b/assets/how-to-use.gif)
+![Gif how to use the extension](https://raw.githubusercontent.com/stan-at-work/remove-dart-error-warning/01e2acf6aacfb69660c024ec84b53e43a114ea6b/assets/how-to-use.gif)
 
 1. **Using Command Palette**:
 
