@@ -13,7 +13,7 @@
     "homepage": "https://github.com/stan-at-work/remove-dart-error-warning#readme",
     "publisher": "Stan",
     "displayName": "Remove Dart Error/Warning",
-    "version": "5.0.1",
+    "version": "5.0.2",
     "engines": {
         "vscode": "^1.60.0"
     },
