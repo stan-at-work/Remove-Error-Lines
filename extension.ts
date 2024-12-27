@@ -1,13 +1,13 @@
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
-    let disposable = vscode.commands.registerCommand('extension.removeDartImportsWithErrors', () => {
+    const disposable = vscode.commands.registerCommand('extension.removeDartErrorsAndWarnings', () => {
         const editor = vscode.window.activeTextEditor;
 
         if (editor) {
             const document = editor.document;
 
-            const updatedText = removeDartImportsWithErrors(document);
+            const updatedText = removeDartErrorsAndWarnings(document, 'all');
 
             editor.edit((editBuilder) => {
                 const start = new vscode.Position(0, 0);
@@ -18,24 +18,63 @@ export function activate(context: vscode.ExtensionContext) {
         }
     });
 
-    context.subscriptions.push(disposable);
+    const disposable2 = vscode.commands.registerCommand('extension.removeDartOnlyErrors', () => {
+        const editor = vscode.window.activeTextEditor;
+
+        if (editor) {
+            const document = editor.document;
+
+            const updatedText = removeDartErrorsAndWarnings(document, 'error');
+
+            editor.edit((editBuilder) => {
+                const start = new vscode.Position(0, 0);
+                const end = new vscode.Position(document.lineCount + 1, 0);
+                const range = new vscode.Range(start, end);
+                editBuilder.replace(range, updatedText);
+            });
+        }
+    });
+
+    const disposable3 = vscode.commands.registerCommand('extension.removeDartOnlyWarnings', () => {
+        const editor = vscode.window.activeTextEditor;
+
+        if (editor) {
+            const document = editor.document;
+
+            const updatedText = removeDartErrorsAndWarnings(document, 'warning');
+
+            editor.edit((editBuilder) => {
+                const start = new vscode.Position(0, 0);
+                const end = new vscode.Position(document.lineCount + 1, 0);
+                const range = new vscode.Range(start, end);
+                editBuilder.replace(range, updatedText);
+            });
+        }
+    });
+
+    context.subscriptions.push(...[disposable, disposable2, disposable3]);
 }
 
-function removeDartImportsWithErrors(document: vscode.TextDocument): string {
+function removeDartErrorsAndWarnings(document: vscode.TextDocument, type: string): string {
     let updatedText = '';
 
     for (let line = 0; line < document.lineCount; line++) {
         const lineText = document.lineAt(line).text;
         const diagnostics = vscode.languages.getDiagnostics(document.uri);
 
-        const lineHasError = diagnostics.some((diagnostic) => diagnostic.range.start.line === line && diagnostic.severity === vscode.DiagnosticSeverity.Error) && /^(import|part|part of)\s*/.test(lineText.trim());
+        const isImportExportPartPartOf = /^(import|export|part|part of)\s/.test(lineText.trim());
+        const isVariableDeclaration = /^\s*(const|final|var|late)\s+[\w<>,\s]+\s+\w*\s*(=.*)?\s*;$/.test(lineText.trim());
 
-        if (!lineHasError) {
-            updatedText += lineText;
+        const lineHasError = diagnostics.some((diagnostic) => diagnostic.range.start.line === line && diagnostic.severity === vscode.DiagnosticSeverity.Error);
+        const lineHasWarning = diagnostics.some((diagnostic) => diagnostic.range.start.line === line && diagnostic.severity === vscode.DiagnosticSeverity.Warning);
 
-            if (line < document.lineCount - 1) {
-                updatedText += '\n';
-            }
+        if((isImportExportPartPartOf || isVariableDeclaration) && lineHasError && (type === 'error' || type === 'all')) continue;
+        if((isImportExportPartPartOf || isVariableDeclaration) && lineHasWarning && (type === 'warning' || type === 'all')) continue;
+
+        updatedText += lineText;
+
+        if (line < document.lineCount - 1) {
+            updatedText += '\n';
         }
     }
 
